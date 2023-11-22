@@ -247,6 +247,7 @@ using std::endl;
   }
 
   BST::BSTNode* BST::max(BSTNode * a, BSTNode * b) const {
+
     if(a == nullptr || b == nullptr){
         return nullptr;
     }
@@ -254,18 +255,20 @@ using std::endl;
         return a;
     }
     return b;
+
   }
 
   unsigned int BST::getBalance(BSTNode * node) const {
+
     if(node == nullptr){
         return 0;
     }
     return heightOfNode(this->root, node->left) - heightOfNode(this->root, node->right);
+
   }
 
-
-
   BST::BSTNode* BST::insertAVLR(BSTNode * newNode, int newElement) const {
+
     if(newNode == nullptr){
         newNode = new BSTNode(newElement);
         return;
@@ -301,4 +304,45 @@ using std::endl;
         return rotateLeft(newNode);
     }
     return newNode;
+
+  }
+
+  void BST::printPreOrderR(BSTNode *current) const {
+    if (current != nullptr) {
+      cout << current->element << " ";
+      printPreOrderR(current->left);
+      printPreOrderR(current->right);
+    }
+    return;
+  }
+
+  void BST::printPreOrder() const {
+
+    cout << "Printing BST with elementCount = " << elementCount << endl;
+    cout << "{ ";
+    if (elementCount != 0) printPreOrderR(root);
+    cout << "}";
+
+    return;
+
+  }
+
+  void BST::printPostOrderR(BSTNode *current) const {
+    if (current != nullptr) {
+      printPostOrderR(current->left);
+      printPostOrderR(current->right);
+      cout << current->element << " ";
+    }
+    return;
+  }    
+
+  void BST::printPostOrder() const {
+
+    cout << "Printing BST with elementCount = " << elementCount << endl;
+    cout << "{ ";
+    if (elementCount != 0) printPostOrderR(root);
+    cout << "}";
+
+    return;
+
   }

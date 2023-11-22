@@ -64,6 +64,10 @@ private:
 
   unsigned int getBalance(BSTNode * node) const;
 
+  void printPreOrderR(BSTNode * current) const;
+
+  void printPostOrderR(BSTNode * current) const;
+
 public:
 
 // You cannot change the prototype of the public methods of this class.
@@ -117,6 +121,10 @@ public:
   BSTNode* rotateRight(BSTNode * node) const;
 
   BSTNode* rotateLeft(BSTNode * node) const;
+
+  void printPreOrder() const;
+
+  void printPostOrder() const;
 
 };
 
