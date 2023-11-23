@@ -56,7 +56,7 @@ bool BinaryHeap<ElementType>::insert(ElementType& newElement) {
 
 // Utility method - Recursively put the array back into a Minimum Binary Heap.
 template <class ElementType>
-void BinaryHeap<ElementType>::reHeapUp(unsigned int indexOfBottom) {
+void BinaryHeap<ElementType>::reHeapUpMin(unsigned int indexOfBottom) {
    unsigned int indexOfRoot = 0;
    ElementType temp;
    unsigned int indexOfParent;
@@ -91,7 +91,7 @@ void BinaryHeap<ElementType>::remove() {
 // Utility method
 // Description: Recursively put the array back into a Minimum Binary Heap.
 template <class ElementType>
-void BinaryHeap<ElementType>::reHeapDown(unsigned int indexOfRoot) {
+void BinaryHeap<ElementType>::reHeapDownMin(unsigned int indexOfRoot) {
 
    unsigned int indexOfMinChild = indexOfRoot;
    
@@ -129,13 +129,47 @@ void BinaryHeap<ElementType>::reHeapDown(unsigned int indexOfRoot) {
 }
 
 template <class ElementType>
+void BinaryHeap<ElementType>::reHeapUpMax(unsigned int indexOfRoot) {
+    unsigned int parent = (indexOfRoot - 1) / 2;
+
+    while (indexOfRoot > 0 && elements[indexOfRoot] > elements[parent]) {
+        ElementType temp = elements[indexOfRoot];
+        elements[indexOfRoot] = elements[parent];
+        elements[parent] = temp;
+        indexOfRoot = parent(indexOfRoot);
+    }
+
+}
+
+template <class ElementType>
+void BinaryHeap<ElementType>::reHeapDownMax(unsigned int indexOfRoot) {
+
+    unsigned int maxIndex = indexOfRoot;
+    unsigned int left = 2 * indexOfRoot + 1;
+    unsigned int right = 2 * indexOfRoot + 2;
+
+    if (left > elementCount - 1) { return; }
+
+    if(left < elementCount && elements[left] > elements[maxIndex]){
+        maxIndex = left;
+    }
+    if (right < elementCount && elements[right] > elements[maxIndex]) {
+        maxIndex = right;
+    }
+    if (indexOfRoot != maxIndex) {
+        swap(elements[indexOfRoot], elements[maxIndex]);
+        reHeapDownMax(maxIndex);
+    }
+}
+
+template <class ElementType>
 ElementType& BinaryHeap<ElementType>::retrieve() const {
-   // Enforce precondition
-   if ( elementCount == 0 )
-      throw EmptyDataCollectionException("retrieve() called with an empty BinaryHeap.");
-   else
-      return elements[0]; 
-}  
+    // Enforce precondition
+    if ( elementCount == 0 )
+        throw EmptyDataCollectionException("retrieve() called with an empty BinaryHeap.");
+    else
+        return elements[0]; 
+}
 
 // For Testing Purposes
 // Description: Prints the content of "this".

@@ -15,10 +15,14 @@ private:
    unsigned int capacity = INITIAL_CAPACITY;           // Actual capacity of the data structure (number of cells in the array)
  
    // Utility method - Recursively put the array back into a Minimum Binary Heap.
-   void reHeapUp(unsigned int indexOfBottom);
+   void reHeapUpMin(unsigned int indexOfBottom);
 
    // Utility method - Recursively put the array back into a Minimum Binary Heap.
-   void reHeapDown(unsigned int indexOfRoot);  
+   void reHeapDownMin(unsigned int indexOfRoot);  
+
+   void reHeapUpMax(unsigned int indexOfBottom);
+
+   void reHeapDownMax(unsigned int indexOfRoot);
    
 public:
 
