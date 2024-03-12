@@ -30,16 +30,9 @@ private:
 
   };
 
-/* Data Members */
-
-  // You cannot change the following data members of this class.
-
   BSTNode * root = nullptr; 
   unsigned int elementCount = 0;          
 
-/* Utility methods */
-	
-// Feel free to add private methods to this class.
 	
   // Description: Recursive insertion into a binary search tree.
   void insertR(BSTNode * newElement, BSTNode * current);
@@ -70,11 +63,6 @@ private:
 
 public:
 
-// You cannot change the prototype of the public methods of this class.
-
-
-/* Constructors and Destructor */
-
   // Default constructor: Constructs an empty tree.
   BST();            
 
@@ -86,19 +74,12 @@ public:
 
   // Destructor 
   ~BST();
-
-
-/* Getters and setters */
    
   // Description: Returns the number of elements currently stored in the binary search tree.  
   unsigned int getElementCount() const;
 
-/* BST Operations */
-
   // Description: Inserts an element into the binary search tree.
   //              This is a wrapper method which calls the recursive insertR( ).
-  // Exception: Throws the exception "UnableToInsertException" when newElement 
-  //            cannot be inserted (e.g., "new" operator fails).  
   void insert(int newElement);
 
   // Description: Returns the height of this binary search tree.

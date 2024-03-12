@@ -9,14 +9,9 @@ class PriorityQueue {
 
 private:
 
-// You can add private methods to your Priority Queue ADT class.
-
    BinaryHeap<ElementType> * elements;  // Elements in Priority Queue
    
 public:
-
-// The number and kind of constructors is up to you as well as 
-// whether it should have a destructor and a copy constructor.
 
    // Default Constructor
    PriorityQueue();
@@ -26,7 +21,7 @@ public:
    ~PriorityQueue();   
 
 
-   //unsigned int getElementCount() const ;
+   unsigned int getElementCount() const ;
 
    // Description: Returns true if this Priority Queue is empty, otherwise false.
    // Postcondition: This Priority Queue is unchanged by this operation.

@@ -26,6 +26,7 @@ template <class ElementType>
 bool BinaryHeap<ElementType>::insert(ElementType& newElement) {
    bool ableToInsert = false;
 
+   // If Binary Heap does not exist
    if (elements == nullptr) {
       elements = new ElementType[capacity];
       if (elements == nullptr) 
@@ -100,18 +101,15 @@ void BinaryHeap<ElementType>::reHeapDownMin(unsigned int indexOfRoot) {
    unsigned int indexOfRightChild = 2 * indexOfRoot + 2;
 
    // Base case: elements[indexOfRoot] is a leaf as it has no children
-   // if (indexOfLeftChild >= elementCount) return;
    if (indexOfLeftChild > elementCount - 1) return;   
 
    // If we need to swap, select the smallest child
-   // If (elements[indexOfRoot] > elements[indexOfLeftChild])
-   if ( ! (elements[indexOfRoot] <= elements[indexOfLeftChild]) )
+   if ((elements[indexOfRoot] > elements[indexOfLeftChild]))
       indexOfMinChild = indexOfLeftChild;
 
    // Check if there is a right child, is it the smallest?
    if (indexOfRightChild < elementCount) {
-      // if (elements[indexOfMinChild] > elements[indexOfRightChild])
-      if ( ! (elements[indexOfMinChild] <= elements[indexOfRightChild]) )
+      if ((elements[indexOfMinChild] > elements[indexOfRightChild]) )
          indexOfMinChild = indexOfRightChild;
    }
 
@@ -128,6 +126,7 @@ void BinaryHeap<ElementType>::reHeapDownMin(unsigned int indexOfRoot) {
    return;
 }
 
+// Sort the heap again from bottom up for Max Heap
 template <class ElementType>
 void BinaryHeap<ElementType>::reHeapUpMax(unsigned int indexOfRoot) {
     unsigned int parent = (indexOfRoot - 1) / 2;
@@ -141,6 +140,7 @@ void BinaryHeap<ElementType>::reHeapUpMax(unsigned int indexOfRoot) {
 
 }
 
+// Sort the heap again from top down for Max Heap
 template <class ElementType>
 void BinaryHeap<ElementType>::reHeapDownMax(unsigned int indexOfRoot) {
 

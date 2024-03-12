@@ -35,8 +35,6 @@ bool PriorityQueue<ElementType>::isEmpty() const {
 template <class ElementType>     
 bool PriorityQueue<ElementType>::enqueue(ElementType& newElement) {
 
-   // cout << "PriorityQueue::enqueue" << endl;
-
    return elements->insert(newElement);
 
 } 
@@ -73,7 +71,6 @@ ElementType & PriorityQueue<ElementType>::peek() const {
       return elements->retrieve();
    }
    catch( EmptyDataCollectionException& anException ) {
-     // cout << "Problem peek'ing from Binary heap!" << endl;
       throw EmptyDataCollectionException("peek() called with an empty PriorityQueue!") ;
    }
 
@@ -84,7 +81,6 @@ ElementType & PriorityQueue<ElementType>::peek() const {
 // Description: Prints the content of "this". 
 template <class ElementType>
 void PriorityQueue<ElementType>::print( ) const {
-   //cout << "In print()" << endl;
    elements->print();
       
-}  // end printPriorityQueue
+}

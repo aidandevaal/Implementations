@@ -8,11 +8,11 @@ class BinaryHeap {
 
 private:
    
-   constexpr static unsigned int INITIAL_CAPACITY = 6; // Constant INITIAL_CAPACITY
+   constexpr static unsigned int INITIAL_CAPACITY = 6;
    ElementType * elements = nullptr;                   // The Binary Heap
 
-   unsigned int elementCount = 0;                      // Number of elements in the Binary Heap - if you need it!
-   unsigned int capacity = INITIAL_CAPACITY;           // Actual capacity of the data structure (number of cells in the array)
+   unsigned int elementCount = 0;
+   unsigned int capacity = INITIAL_CAPACITY;
  
    // Utility method - Recursively put the array back into a Minimum Binary Heap.
    void reHeapUpMin(unsigned int indexOfBottom);

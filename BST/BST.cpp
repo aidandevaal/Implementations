@@ -17,11 +17,8 @@ using std::endl;
 
   // Copy constructor
   BST::BST(const BST & aBST) {
-  
-    //cout << "BST Copy constructor called!" << endl;
            
     if ( aBST.elementCount == 0 ) {
-      //cout << "aBST is empty!" << endl;	
       this->elementCount = 0;
       this->root = nullptr;
     }
@@ -31,8 +28,6 @@ using std::endl;
 
   // Destructor 
   BST::~BST() {
-
-    //cout << "BST destructor called!" << endl;
      
     if ( this->root != nullptr ) {
       destroyR(root);
@@ -41,13 +36,9 @@ using std::endl;
 
   }                
 
-
-/* Helper methods */
   
   // Description: Recursive preorder traversal of a binary search tree in order to build its copy.
   void BST::copyR(BSTNode * current) {
-    
-    //cout << "copyR called!" << endl;
 
     if (current != nullptr) {
       this->insert(current->element);
@@ -55,13 +46,12 @@ using std::endl;
       copyR(current->right);
     }    
     return;
+
   }
 
   // Description: Recursive postorder traversal of a BST in order to release heap memory allocated to BSTNode.
   void BST::destroyR(BSTNode * current) {
-  
-    // cout << "destroyR called!" << endl;
-  
+    
     if (current != nullptr) {
       destroyR(current->left);
       destroyR(current->right);
@@ -70,9 +60,8 @@ using std::endl;
       this->elementCount--;
     }
     return;
-  }
 
-/* Getters and setters */
+  }
    
 
   // Description: Returns the number of elements currently stored in the binary search tree.     
@@ -84,9 +73,7 @@ using std::endl;
 /* BST Operations */
 
   // Description: Inserts an element into the binary search tree.
-  //              This is a wrapper method which calls the recursive insertR( ).
-  // Exception: Throws the exception "UnableToInsertException" when newElement 
-  //            cannot be inserted (e.g., "new" operator fails).   
+  //              This is a wrapper method which calls the recursive insertR( ). 
   void BST::insert(int newElement) {
      
     // Binary search tree is empty, so add the new element as the root
@@ -96,14 +83,8 @@ using std::endl;
     if (elementCount == 0 ) // and root == nullptr
       root = newBSTNode;
     else {
-      //try { // can I let it flow through? no try/catch block?
-        insertR(newBSTNode, root);
-      //}
-      //catch ( UnableToInsertException & e ) {
-        //throw UnableToInsertException("Operator new failed!");
-      //}
+      insertR(newBSTNode, root);
     }
-
     this->elementCount++;
     return;
   } 
@@ -138,8 +119,6 @@ using std::endl;
 
   // Description: Returns the number of nodes in this binary search tree.
   //              You cannot return "elementCount".
-  //              Feel free to implement this method as an iterative method or
-  //              as a wrapper method calling a recursive method.		
   unsigned int BST::numberOfNodes(BSTNode * node) const {
 
     unsigned int count = 0;
@@ -163,8 +142,6 @@ using std::endl;
   }
 
   // Description: Returns the height of this binary search tree.
-  //              Feel free to implement this method as an iterative method or
-  //              as a wrapper method calling a recursive method.
   unsigned int BST::height() const {
 
     unsigned int count = rPath(root);
@@ -187,29 +164,8 @@ using std::endl;
 
   }
   
-  // Description: Prints the content of the binary search tree in order.
-  //              This is a wrapper method which calls the recursive printsInOrderR( ).
-  void BST::printInOrder() const {
 
-    cout << "Printing BST with elementCount = " << elementCount << endl;
-    cout << "{ ";
-    if (elementCount != 0) printInOrderR(root);
-    cout << "}";
-
-    return;
-  }
-
-  // Description: Recursively traverse the a binary search tree
-  //              printing its elements in order.   
-  void BST::printInOrderR(BSTNode *current) const {
-    if (current != nullptr) {
-      printInOrderR(current->left);
-      cout << current->element << " ";
-      printInOrderR(current->right);
-    }
-    return;
-  }
-
+  // Helper function to find the height of a node
   unsigned int BST::heightOfNode(BSTNode * root, BSTNode * node) const {
         unsigned int height = 0;
         if(root!=nullptr){
@@ -220,6 +176,7 @@ using std::endl;
         return height - 1;
   } 
 
+  // Rotate right function for AVL
   BST::BSTNode* BST::rotateRight(BSTNode * node) const {
 
     BSTNode * nodeL = node->left;
@@ -233,6 +190,7 @@ using std::endl;
 
   }
 
+  // Rotate left for AVL
   BST::BSTNode* BST::rotateLeft(BSTNode * node) const {
     
     BSTNode * nodeR = node->right;
@@ -246,6 +204,7 @@ using std::endl;
 
   }
 
+  // Find max of a tree
   BST::BSTNode* BST::max(BSTNode * a, BSTNode * b) const {
 
     if(a == nullptr || b == nullptr){
@@ -258,6 +217,7 @@ using std::endl;
 
   }
 
+  // Find tree balance (verify that it is an AVL)
   unsigned int BST::getBalance(BSTNode * node) const {
 
     if(node == nullptr){
@@ -267,6 +227,7 @@ using std::endl;
 
   }
 
+  // Insert in AVL form
   BST::BSTNode* BST::insertAVLR(BSTNode * newNode, int newElement) const {
 
     if(newNode == nullptr){
@@ -308,12 +269,14 @@ using std::endl;
   }
 
   void BST::printPreOrderR(BSTNode *current) const {
+
     if (current != nullptr) {
       cout << current->element << " ";
       printPreOrderR(current->left);
       printPreOrderR(current->right);
     }
     return;
+
   }
 
   void BST::printPreOrder() const {
@@ -322,18 +285,38 @@ using std::endl;
     cout << "{ ";
     if (elementCount != 0) printPreOrderR(root);
     cout << "}";
-
     return;
 
   }
 
+  void BST::printInOrder() const {
+
+    cout << "Printing BST with elementCount = " << elementCount << endl;
+    cout << "{ ";
+    if (elementCount != 0) printInOrderR(root);
+    cout << "}";
+    return;
+
+  }
+
+  void BST::printInOrderR(BSTNode *current) const {
+    if (current != nullptr) {
+      printInOrderR(current->left);
+      cout << current->element << " ";
+      printInOrderR(current->right);
+    }
+    return;
+  }
+
   void BST::printPostOrderR(BSTNode *current) const {
+
     if (current != nullptr) {
       printPostOrderR(current->left);
       printPostOrderR(current->right);
       cout << current->element << " ";
     }
     return;
+
   }    
 
   void BST::printPostOrder() const {
@@ -342,7 +325,6 @@ using std::endl;
     cout << "{ ";
     if (elementCount != 0) printPostOrderR(root);
     cout << "}";
-
     return;
 
   }
